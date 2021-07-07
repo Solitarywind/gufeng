@@ -1,0 +1,178 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>Git命令大全-思维笔记|ProcessOn</title>
+
+    <style>
+        body {
+            margin: 0 auto;
+            width: 1200px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h1> Git命令大全</header>
+            <h2>本地连接远程仓库
+            </h2>
+            　　 <p>初始化仓库：git init </p>
+            　 <p>　建立连接：git remote add origin 远程仓库地址</p>
+
+            　　 <p>远程仓库pull到本地：git pull origin master</p>
+            <h2>配置操作</h2>
+            <div>
+                <p> git config --user | --global | --system user.name 'username' # 配置仓库 | 用户 | 系统级别用户名 </p>
+                <p> git config --user | --global | --system user.email 'user@example.com' # 配置仓库 | 用户 | 系统级别邮箱</p>
+                <p> git config --list --show-origin # 查看所有的配置以及它们所在的文件</p>
+                <p> git config --local | --global | --system -l # 查看仓库 | 用户 | 系统级别配置</p>
+                <p> git config --local | --global | --system -e # 编辑仓库 | 用户 | 系统级别配置</p>
+                <p> git config --local | --global | --system --add user.name jack # 添加一个仓库 | 用户 | 系统配置项</p>
+                <p> git config --local | --global | --system --get user.name # 获取一个仓库 | 用户 | 系统配置项</p>
+                <p> git config --local | --global | --system --unset user.name # 移除一个仓库 | 用户 | 系统配置项</p>
+            </div>
+            <h2>基本操作</h2>
+            <div>
+                <p> git init # 初始化一个仓库</p>
+                <p> git init --bare project-name.git # 创建一个祼仓库</p>
+                <p> git clone url # 从指定地址克隆一个仓库</p>
+                <p> git clone --branch <tag>
+                        <repo> # 克隆特定的标签</p>
+                <p> git clone -depth=1 <repo> # 浅克隆最近一次提交记录的给定仓库 </p>
+                <p> git clone -branch new_feature <repo> # 克隆远程仓库的某个分支</p>
+                <p> git status # 查看当前工作区状态</p>
+                <p> git add . # 将当前目录下的所有文件添加到暂存区</p>
+                <p> git commit -m 'xxx' # 添加注释并提交</p>
+                <p> git commit --amend -m 'xxx' # 合并上一次提交（反复修改）</p>
+                <p> git commit -am 'xxx' # 将 add 和 commit 合并为一步</p>
+                <p> git rm path/to/filename # 删除暂存中指定的文件</p>
+                <p> git remote add origin <user>@<host>:/path/to/repository/<project-name>.git #将本地与远程分支关联起来</p>
+                <p> git push -u github master # 初次提交</p>
+                <p> git branch --set-upstream-to=origin/<branch>
+                        <branch> # 设置让本地某个分支跟踪远程的某个分支</p>
+                <p> git rm --cached filename # 从暂存区将文件移除</p>
+                <p> git checkout -- filename # 将文件彻底从暂存区放弃</p>
+                <p> git checkout --track hotfix/fix-menu #检出远程分支hotfix/fix-menu并创建本地跟踪分支</p>
+                <p> git stash list # 显示进度列表</p>
+                <p> git stash save <message> # 给当前存储的修改起个名字</p>
+                <p> git stash apply stash@{X} # 取出给定的暂存</p>
+                git stash drop stash@{X} # 将记录列表中取出的给定暂存记录删除</p>
+            </div>
+            <h2>分支操作</h2>
+            <div>
+                <p> git branch # 显示本地分支</p>
+                <p> git branch -a # 显示所有分支</p>
+                <p> git branch -D # 删除未曾合并过的分支</p>
+                <p> git branch -d # 删除已经合并过的分支</p>
+                <p> git branch -m oldName newName # 本地分支重命名</p>
+                <p> git push --delete origin <branch-name> # 删除远程分支</p>
+                <p> git branch --set-upstream-to origin/newName # 把本地分支与远程分支关联起来</p>
+                <p> git branch -v # 查看当前的本地分支与远程分支的关联关系</p>
+                <p> git diff origin/develop # 查看本地当前分支与远程某一分支的差异</p>
+                <p> git diff master origin/master # 查看本地 master 分支与远程 master 分支的差异</p>
+            </div>
+            <h2>合并操作</h2>
+            <div>
+                <p> git merge origin/master # 将远程 master 分支合并到本地 master</p>
+                <p> git merge --no-ff develop # 将 develop 分支合并到当前分支（不使用 Fast-forward）</p>
+                <p> git mergetool # 用 mergetool 解决冲突</p>
+                <p> git merge a # 把 a 分支合入到当前分支，且为 merge 创建 commit</p>
+                <p> git merge a b # 把 a 分支合入到 b 分支，且为 merge 创建 commit</p>
+                <p> git rebase -i HEAD~~~ # 汇合提交：将之前的三次提交合并到一处（squash）</p>
+                <p> git rebase -i HEAD~3 # 修改提交（edit）</p>
+                <p> git rebase b # 把当前分支基于 b 分支做 rebase，以便把 b 分支合入到当前分支</p>
+                <p> git rebase b a # 把当前分支基于 b 分支做 rebase，以便把 b 分支合入到 a 分支</p>
+                <p> git cherry-pick <commit-id> # 将其它分支上的合适提交挑选到当前分支</p>
+            </div>
+
+            <h2>标签操作</h2>
+            <div>
+                <p>git tag # 查看所有标签</p>
+                <p> git tag -l 'v2.6.*' # 搜索某个标签</p>
+                <p>git tag -a v1.0.2 -m "Project v1.0.2 Released" # 新建某个标签</p>
+                <p>git push origin v1.0.1 # 推送某个标签到远程</p>
+                <p>git push origin --tags # 推送所有标签到远程</p>
+                <p>git show v1.0.2 # 查看某个标签的版本信息</p>
+                <p>git tag -d v1.0.1 # 删除本地标签</p>
+                <p>git push origin --delete tag <tag-name> # 删除远程标签</p>
+                <p>git push origin -d <tag-name> # 删除远程标签</p>
+                <p>git push origin :refs/tags/<tag-name> # 删除远程标签 </p>
+            </div>
+            <h2>回滚操作</h2>
+            <p>git reset --hard <commit-id> # 将本地版本退回到某次提交上</p>
+            <h2>本地文件回滚</h2>
+            <div>
+                <p>git log filename.*</p>
+                <p>git reset <commit-id> filename.*</p>
+                <p>git commit -m "Rollback filename.*"</p>
+                <p>git checkout filename.*</p>
+                <p>git reset HEAD <文件名> # 把暂存区的修改撤销掉，重新放回工作区</p>
+                <p> git revert HEAD # 撤销上一个提交</p>
+                <p> git reset --hard ORIG_HEAD # 回退到上一次 reset 之前</p>
+            </div>
+            <h2>日志操作</h2>
+            <div>
+                <p>git log # 显示简略的提交日志</p>
+                <p>git log -- filename # 查看某个文件变动的具体日志信息</p>
+                <p> git log -p -2 # 查看最近两次更新的内容差异</p>
+                <p>git log --stat # 显示简要的增改行数统计</p>
+                <p>git log -1 HEAD # 显示最后一次提交信息</p>
+                <p>git log --pretty=oneline # 单行显示日志信息</p>
+                <p>git log --pretty=oneline --graph --abbrev-commit # 查看图文格式日志</p>
+                <p>git log --graph --oneline --decorate --all # 通过 ASCII 艺术的树形结构来展示所有的分支，每个分支都标示了它的名字和标签</p>
+                <p>git log --name-status # 查看文件改变信息</p>
+                <p>git reflog # 显示所有提交，包括孤立节点</p>
+            </div>
+            <h2>远程操作</h2>
+            <div>
+                <p>git remote # 查看远程分支名称，默认为 origin</p>
+                <p>git remote -v # 查看远程仓库的 URL，可能有多个</p>
+                <p> git remote show <origin> # 查看某个远程仓库的详细信息，默认为 origin</p>
+                <p>git remote add <origin>
+                        <地址> # 添加远程分支</p>
+                <p>git remote rename <old-name>
+                        <new-name> # 修改远程分支的名称</p>
+                <p> git remote rm <name> # 删除远程分支</p>
+                <p>git push gitee master # 将当前名称为 gitee 的仓库推送到远程 master 分支</p>
+                <p> git checkout -b <branch-name> origin/<branch-name> # 检出远程分支到本地分支</p>
+                <p> git remote rename master xiaohe # 重命名远程分支的名称</p>
+                <p> git push origin --delete <branch-name> # 删除远程某个分支</p>
+                <p> git remote update origin --prune # 更新远程分支列表</p>
+                <p> git push origin -f # 强制将本地当前分支推送到远程仓库对应的分支</p>
+                <p> git push origin develop # 将本地 develop 分支推送到远程仓库对应的</p>
+                <p> remotes/origin/develop 分支</p>
+                <p> git push origin --all # 将本地所有分支推送到远程仓库对应的分支</p>
+            </div>
+            <h2>统计操作</h2>
+            <div>
+                <h3>统计仓库代码行数</h3>
+                <p> ```bash git log --pretty=tformat: --numstat | awk '{ add +=
+                    $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s,
+                    total lines: %s\n", add, subs, loc }' ```</p>
+                <h3> 统计指定用户的代码行数</h3>
+                <p> ```bash // 将 username 替换具体用户名 git log --author="username" --pretty=tformat: --numstat | awk '{ add
+                    +=
+                    $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines:
+                    %s\n",</p>
+                add, subs, loc }' - ```
+                <h3>统计每个人增删代码行数</h3>
+                <p> ```bash git log --format='%aN' | sort -u | while read name; do echo -en "$name\t"; git log
+                    --author="$name" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END {
+                    printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }' -; done ```</p>
+                <h3> 统计提交数</h3>
+                <p> ```bash git log --oneline | wc -l ```</p>
+            </div>
+
+    </div>
+
+
+
+</body>
+
+
+</html>
