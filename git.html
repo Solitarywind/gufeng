@@ -66,6 +66,7 @@
             <h2>分支操作</h2>
             <div>
                 <p> git branch # 显示本地分支</p>
+                <p> git branch xxx  创建本地一个新的分支名字为 xxx </p>
                 <p> git branch -a # 显示所有分支</p>
                 <p> git branch -D # 删除未曾合并过的分支</p>
                 <p> git branch -d # 删除已经合并过的分支</p>
@@ -73,8 +74,11 @@
                 <p> git push --delete origin <branch-name> # 删除远程分支</p>
                 <p> git branch --set-upstream-to origin/newName # 把本地分支与远程分支关联起来</p>
                 <p> git branch -v # 查看当前的本地分支与远程分支的关联关系</p>
+                <p> git checkout -b xxx 创建并切换到名字为xxx新的分支 </p>
+                <p> git chechout xxx 切换到（已存在的）xxx 的分支</p>
                 <p> git diff origin/develop # 查看本地当前分支与远程某一分支的差异</p>
                 <p> git diff master origin/master # 查看本地 master 分支与远程 master 分支的差异</p>
+                <p> git merge xxx 合并本地分支（在master 合并 dev 分支） </p>
             </div>
             <h2>合并操作</h2>
             <div>
